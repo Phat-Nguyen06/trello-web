@@ -2,7 +2,7 @@
 import Box from '@mui/material/Box'
 
 //components dark light mode
-import ModeSelect from '../../components/ModeSelect/'
+import ModeSelect from '~/components/ModeSelect/'
 
 
 function AppBar() {
