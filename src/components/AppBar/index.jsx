@@ -4,6 +4,7 @@ import AppsIcon from '@mui/icons-material/Apps'
 import SvgIcon from '@mui/material/SvgIcon'
 import Typography from '@mui//material/Typography'
 import Button from '@mui/material/Button'
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 import TextField from '@mui/material/TextField'
 import Tooltip from '@mui/material/Tooltip'
 import Badge from '@mui/material/Badge'
@@ -24,13 +25,14 @@ import { ReactComponent as TrelloIcon } from '~/assets/trello.svg'
 
 function AppBar() {
   return (
-    <Box px={2} sx={{
+    <Box sx={{
       height: (theme) => theme.trello.appBarHeight,
       width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       gap: 2,
+      paddingX: 2,
       overflowX: 'auto'
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -46,7 +48,7 @@ function AppBar() {
           <Recent />
           <Starred />
           <Templates />
-          <Button variant="outlined">Create</Button>
+          <Button variant="outlined" startIcon={<LibraryAddIcon />}>Create</Button>
         </Box>
       </Box>
 
