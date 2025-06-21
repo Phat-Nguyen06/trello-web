@@ -18,7 +18,7 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 //components
-import ModeSelect from '~/components/ModeSelect/'
+import ModeSelect from '~/components/ModeSelect/ModeSelect'
 import Workspaces from './Menu/Workspaces'
 import Recent from './Menu/Recent'
 import Starred from './Menu/Starred'
