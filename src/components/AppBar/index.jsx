@@ -62,7 +62,7 @@ function AppBar() {
             variant="text"
             startIcon={<LibraryAddIcon />}
           >Create</Button>
-        </Box> 
+        </Box>
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
