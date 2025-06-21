@@ -36,7 +36,7 @@ function Profiles() {
           aria-expanded={open ? 'true' : undefined}
         >
           <Avatar
-            sx={{ width: 34, height: 34 }}
+            sx={{ width: 36, height: 36 }}
             alt='Avata'
             src= 'https://file.hstatic.net/200001029891/file/z6725172432342_fd97fe18bba2e9828effa61770d2a027.jpg'
           />
