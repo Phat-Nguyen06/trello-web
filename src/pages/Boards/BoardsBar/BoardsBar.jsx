@@ -12,6 +12,9 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 
+// import function
+import { capitalizeFirstLetter } from '~/utils/formatters'
+
 const MENU_STYLES = {
   color: 'white',
   bgcolor: 'transparent',
@@ -26,7 +29,7 @@ const MENU_STYLES = {
   }
 }
 
-function BoardsBar() {
+function BoardsBar({ board }) {
   return (
     <Box sx={{
       height: (theme) => theme.trello.boardBarHeight,
@@ -43,14 +46,14 @@ function BoardsBar() {
         <Chip
           sx={MENU_STYLES}
           icon={<DashboardIcon />}
-          label="Phat Nguyen"
+          label={board?.title}
           clickable
         />
 
         <Chip
           sx={MENU_STYLES}
           icon={<VpnLockIcon />}
-          label="Public/Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         />
 
