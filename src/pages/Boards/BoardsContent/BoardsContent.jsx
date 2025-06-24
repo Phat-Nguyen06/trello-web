@@ -23,10 +23,10 @@ import {
   useSensor, useSensors,
   DragOverlay,
   closestCorners,
-  closestCenter,
+  // closestCenter,
   defaultDropAnimationSideEffects,
   pointerWithin,
-  rectIntersection,
+  // rectIntersection,
   getFirstCollision
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
@@ -281,6 +281,7 @@ function BoardsContent({ board }) {
     })
   }
 
+  // Chúng ta sẽ custom lại chiến lược / thuật toán phát hiện va chạm tối ưu cho việc kéo thả card giữa nhiều columns
   const collisionDetectionStrategy = useCallback((args) => {
     // Trường hợp kéo column thì dùng thuật toán closestCorners là chuẩn nhất
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
@@ -290,18 +291,22 @@ function BoardsContent({ board }) {
     // Tìm các điểm giao nhau, va nhau - intersections với con trỏ
     const pointerIntersections = pointerWithin(args)
 
-    // Thuật toán phát hiện va chạm sẽ trả về một mảng các va chạm ở đây
-    const intersections = !!pointerIntersections?.length
-      ? pointerIntersections
-      : rectIntersection(args)
+    // Fix triệt để cái bug flickering của thư viện Dnd-kit trong trường hợp sau:
+    // Kéo một cái card có image cover lớn và kéo lến phía trên cùng ra khỏi khu vực kéo thả
+    if (!pointerIntersections.length) return
 
-    // Tìm overId đầu tiên trong đám intersections ở trên
-    let overId = getFirstCollision(intersections, 'id')
+    // Thuật toán phát hiện va chạm sẽ trả về một mảng các va chạm ở đây
+    // const intersections = !!pointerIntersections?.length
+    //   ? pointerIntersections
+    //   : rectIntersection(args)
+
+    // Tìm overId đầu tiên trong đám pointerIntersections ở trên
+    let overId = getFirstCollision(pointerIntersections, 'id')
     if (overId) {
       const checkColumn = oderedColumns.find(column => column._id === overId)
       if (checkColumn) {
         // console.log('overId before: ', overId)
-        overId = closestCenter({
+        overId = closestCorners({
           ...args,
           droppableContainers: args.droppableContainers.filter(container => {
             return (container.id !== overId) && (checkColumn?.cardOrderIds?.includes(container.id))
